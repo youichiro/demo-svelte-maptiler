@@ -10,5 +10,8 @@
     <li>
       <a href="/default" class={liClass}>default map</a>
     </li>
+    <li>
+      <a href="/selectable" class={liClass}>selectable map</a>
+    </li>
   </ul>
 </div>
