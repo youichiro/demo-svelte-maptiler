@@ -12,6 +12,16 @@
       zoom: 12,
       fullscreenControl: true,
     });
+
+    // タップイベントを追加
+    map.on('click', (event) => {
+      const coordinates: [number, number] = [event.lngLat.lng, event.lngLat.lat];
+
+      // マーカーを作成して地図に追加
+      new maptilersdk.Marker()
+        .setLngLat(coordinates)
+        .addTo(map);
+    });
   };
 </script>
 
