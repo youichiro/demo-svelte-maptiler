@@ -6,6 +6,7 @@
   maptilersdk.config.primaryLanguage = maptilersdk.Language.JAPANESE;
 
   let currentMaker: maptilersdk.Marker | null = null;
+  let position: [number, number] | null = null;
   let clicked = false;
 
   const initMap = (container: HTMLElement) => {
@@ -29,7 +30,7 @@
         .addTo(map);
 
       const pos = currentMaker.getLngLat();
-      console.log(pos)
+      position = [parseFloat(pos.lng.toFixed(2)), parseFloat(pos.lat.toFixed(2))]
     });
   };
 
@@ -50,6 +51,6 @@
 
 {#if clicked}
   <div class="fixed top-4 left-1/2 transform -translate-x-1/2">
-    <Alert border dismissable on:close={clickedOff} color="green" class="w-[260px]">👍 設定しました</Alert>
+    <Alert border dismissable on:close={clickedOff} color="green" class="w-[260px]">👍 設定しました ({position})</Alert>
   </div>
 {/if}
