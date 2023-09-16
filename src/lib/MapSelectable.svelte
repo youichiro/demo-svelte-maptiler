@@ -4,6 +4,8 @@
   maptilersdk.config.apiKey = 'aQhm9yzeHN2EnPoVqMPB';
   maptilersdk.config.primaryLanguage = maptilersdk.Language.JAPANESE;
 
+  let currentMaker: maptilersdk.Marker | null = null;
+
   const initMap = (container: HTMLElement) => {
     const map = new maptilersdk.Map({
       container: container,
@@ -17,8 +19,11 @@
     map.on('click', (event) => {
       const coordinates: [number, number] = [event.lngLat.lng, event.lngLat.lat];
 
-      // マーカーを作成して地図に追加
-      new maptilersdk.Marker()
+      if (currentMaker) {
+        currentMaker.remove();
+      }
+
+      currentMaker = new maptilersdk.Marker()
         .setLngLat(coordinates)
         .addTo(map);
     });
