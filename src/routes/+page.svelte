@@ -3,7 +3,7 @@
 </script>
 
 
-<div class="w-[400px] mx-auto mt-16">
+<div class="w-[400px] mx-auto mt-16 px-8">
   <h2 class="text-lg mb-4">Maps</h2>
 
   <ul class="list-disc">
