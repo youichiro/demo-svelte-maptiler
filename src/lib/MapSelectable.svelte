@@ -51,6 +51,6 @@
 
 {#if clicked}
   <div class="fixed top-4 left-1/2 transform -translate-x-1/2">
-    <Alert border dismissable on:close={clickedOff} color="green" class="w-[260px]">👍 設定しました ({position})</Alert>
+    <Alert border dismissable on:close={clickedOff} color="green" class="w-[300px]">👍 設定しました ({position})</Alert>
   </div>
 {/if}
