@@ -26,8 +26,12 @@
       currentMaker = new maptilersdk.Marker()
         .setLngLat(coordinates)
         .addTo(map);
+
+      const pos = currentMaker.getLngLat();
+      console.log(pos)
     });
   };
+
 </script>
 
 <div use:initMap style="height: 100vh;" />
