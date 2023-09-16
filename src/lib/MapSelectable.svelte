@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as maptilersdk from '@maptiler/sdk';
+  import { Button } from 'flowbite-svelte';
 
   maptilersdk.config.apiKey = 'aQhm9yzeHN2EnPoVqMPB';
   maptilersdk.config.primaryLanguage = maptilersdk.Language.JAPANESE;
@@ -15,7 +16,6 @@
       fullscreenControl: true,
     });
 
-    // タップイベントを追加
     map.on('click', (event) => {
       const coordinates: [number, number] = [event.lngLat.lng, event.lngLat.lat];
 
@@ -35,3 +35,7 @@
 </script>
 
 <div use:initMap style="height: 100vh;" />
+
+<div class="fixed bottom-16 left-1/2 transform -translate-x-1/2">
+  <Button disabled={currentMaker === null} color="blue" class="py-2 px-6 rounded-full shadow-lg focus:outline-none">この場所に設定する</Button>
+</div>
