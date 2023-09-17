@@ -1,13 +1,11 @@
 <script lang="ts">
   import * as maptilersdk from '@maptiler/sdk';
-  import { Alert, Button } from 'flowbite-svelte';
+  import { Button } from 'flowbite-svelte';
 
   maptilersdk.config.apiKey = 'aQhm9yzeHN2EnPoVqMPB';
   maptilersdk.config.primaryLanguage = maptilersdk.Language.JAPANESE;
 
   let currentMaker: maptilersdk.Marker | null = null;
-  let position: [number, number] | null = null;
-  let clicked = false;
 
   const initMap = (container: HTMLElement) => {
     const map = new maptilersdk.Map({
@@ -35,27 +33,13 @@
         .addTo(map);
 
       const pos = currentMaker.getLngLat();
-      position = [parseFloat(pos.lng.toFixed(2)), parseFloat(pos.lat.toFixed(2))]
+      console.log(pos)
     });
   };
-
-  const clickedOn = () => {
-    clicked = true
-  }
-
-  const clickedOff = () => {
-    clicked = false
-  }
 </script>
 
 <div use:initMap style="height: 100vh;" />
 
 <div class="fixed bottom-16 left-1/2 transform -translate-x-1/2">
-  <Button disabled={currentMaker === null} on:click={clickedOn} color="blue" class="py-2 px-6 rounded-full shadow-lg focus:outline-none">この場所に設定する</Button>
+  <Button disabled={currentMaker === null} color="blue" class="py-2 px-6 rounded-full shadow-lg focus:outline-none">この場所に設定する</Button>
 </div>
-
-{#if clicked}
-  <div class="fixed top-4 left-1/2 transform -translate-x-1/2">
-    <Alert border dismissable on:close={clickedOff} color="green" class="w-[300px]">👍 設定しました ({position})</Alert>
-  </div>
-{/if}
