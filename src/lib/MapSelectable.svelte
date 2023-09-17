@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as maptilersdk from '@maptiler/sdk';
+  import { GeocodingControl } from "@maptiler/geocoding-control/maptilersdk";
   import { Button } from 'flowbite-svelte';
 
   maptilersdk.config.apiKey = 'aQhm9yzeHN2EnPoVqMPB';
@@ -20,6 +21,9 @@
         [153.9867, 45.5515]  // 北東端の座標
       ]
     });
+
+    const gc = new GeocodingControl();
+    map.addControl(gc, 'top-left');
 
     map.on('click', (event) => {
       const coordinates: [number, number] = [event.lngLat.lng, event.lngLat.lat];
