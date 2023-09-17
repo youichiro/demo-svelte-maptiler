@@ -45,5 +45,5 @@
 <div use:initMap style="height: 100vh;" />
 
 <div class="fixed bottom-16 left-1/2 transform -translate-x-1/2">
-  <Button disabled={currentMaker === null} color="blue" class="py-2 px-6 rounded-full shadow-lg focus:outline-none">この場所に設定する</Button>
+  <Button disabled={currentMaker === null} on:click={() => console.log("設定しました")} color="blue" class="py-2 px-6 rounded-full shadow-lg focus:outline-none">この場所に設定する</Button>
 </div>
