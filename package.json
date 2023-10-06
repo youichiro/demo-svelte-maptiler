@@ -35,6 +35,7 @@
   "type": "module",
   "dependencies": {
     "@maptiler/geocoding-control": "^0.0.99",
-    "@maptiler/sdk": "^1.1.2"
+    "@maptiler/sdk": "^1.1.2",
+    "axios": "^1.5.1"
   }
 }
