@@ -2,11 +2,31 @@
   import * as maptilersdk from '@maptiler/sdk';
   import { GeocodingControl } from "@maptiler/geocoding-control/maptilersdk";
   import { Button } from 'flowbite-svelte';
+  import axios from 'axios'
 
-  maptilersdk.config.apiKey = 'aQhm9yzeHN2EnPoVqMPB';
+  const apiKey = 'aQhm9yzeHN2EnPoVqMPB';
+  maptilersdk.config.apiKey = apiKey;
   maptilersdk.config.primaryLanguage = maptilersdk.Language.JAPANESE;
 
   let currentMaker: maptilersdk.Marker | null = null;
+
+  const getPlaceName = async (longitude: number, latitude: number) => {
+    const url = `https://api.maptiler.com/geocoding/${longitude},${latitude}.json?key=${apiKey}`;
+
+    try {
+        const response = await axios.get(url);
+        const data = response.data;
+
+        if (data.features && data.features.length > 0) {
+            return data.features[0].place_name;
+        }
+
+    } catch (error) {
+        console.error("Error fetching location:", error);
+    }
+
+    return "不明な位置";
+  }
 
   const initMap = (container: HTMLElement) => {
     const map = new maptilersdk.Map({
@@ -38,6 +58,7 @@
 
       const pos = currentMaker.getLngLat();
       console.log(pos)
+      getPlaceName(pos.lng, pos.lat).then(value => console.log(value))
     });
   };
 </script>
